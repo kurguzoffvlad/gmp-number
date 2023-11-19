@@ -2,5 +2,41 @@
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "newProjectRoot": "projects",
-  "projects": {}
+  "projects": {
+    "gmp-number": {
+      "projectType": "library",
+      "root": "projects/gmp-number",
+      "sourceRoot": "projects/gmp-number/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/gmp-number/tsconfig.lib.json",
+            "project": "projects/gmp-number/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/gmp-number/src/test.ts",
+            "tsConfig": "projects/gmp-number/tsconfig.spec.json",
+            "karmaConfig": "projects/gmp-number/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/gmp-number/tsconfig.lib.json",
+              "projects/gmp-number/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    }},
+  "defaultProject": "gmp-number"
 }
